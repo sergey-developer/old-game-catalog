@@ -1,0 +1,58 @@
+@import "./src/styles/variables";
+
+.game-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+  &__item {
+    //width: 100%;
+    //height: 100%;
+    width: 100%;
+    height: 240px;
+    position: relative;
+
+    &:not(:last-child) {
+      margin-bottom: 30px;
+    }
+
+    &-image {
+      object-fit: fill;
+      width: 100%;
+      height: 100%;
+      //width: 100%;
+      //height: 240px;
+    }
+
+    &-info-block {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #00000054;
+    }
+
+    &-info {
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    &-name {
+      color: $orange;
+      font-size: $medium-font-size;
+      margin-bottom: $medium-margin-bottom;
+    }
+
+    &-info-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    &-rating {
+      color: $orange;
+    }
+  }
+}

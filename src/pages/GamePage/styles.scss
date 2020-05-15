@@ -1,0 +1,41 @@
+@import "../../styles/variables";
+
+.game-page {
+  display: flex;
+  flex-direction: column;
+}
+
+.game {
+  &__about-block {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__name {
+    color: $orange;
+    font-size: $medium-font-size;
+    margin-bottom: $medium-margin-bottom;
+  }
+
+  &__description-block {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: $large-margin-bottom;
+
+    .game__description-title {
+      font-size: $medium-font-size;
+      margin-bottom: $medium-margin-bottom;
+    }
+  }
+
+  &__image-block {
+    width: 100%;
+    height: 240px; // to common css
+    text-align: center;
+    line-height: 240px;
+  }
+
+  &__release-date, &__website, &__rating {
+    margin-bottom: $small-margin-bottom;
+  }
+}
