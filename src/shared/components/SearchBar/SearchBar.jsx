@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 
 import './styles.scss'
+import TextInput from '../TextInput/TextInput'
 
 const SearchBar = ({onSearch, children}) => {
   const [searchValue, setSearchValue] = useState('')
@@ -13,15 +14,20 @@ const SearchBar = ({onSearch, children}) => {
 
   return(
     <div className='search-bar'>
-      <input
-        className='search-bar__input-search'
-        type="text"
-        placeholder='Search'
-        name='search'
-        value={searchValue}
-        onChange={handleChange}
-      />
-      {children}
+      <div className={`search-bar__search-block ${children ? 'search-bar__search-block--margin-bottom' : ''}`}>
+        <TextInput
+          className='search-bar__input-search'
+          value={searchValue}
+          onChange={handleChange}
+          placeholder='Search'
+          name='search'
+        />
+      </div>
+      {children &&
+        <div className='search-bar__extra-options'>
+          {children}
+        </div>
+      }
     </div>
   )
 }

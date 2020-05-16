@@ -8,12 +8,13 @@ import GameListItem from './GameListItem'
 const GameList = ({games}) => {
   const history = useHistory()
 
-  const onClickItem = (gameSlug) => {
-    history.push(gameSlug)
+  const onClickItem = (event) => {
+    // write loop
+    history.push(event.target.parentNode.dataset.slug)
   }
 
   return (
-    <div className='game-list'>
+    <div className='game-list' onClick={onClickItem}>
       {games.map(game => {
         return (
           <GameListItem
@@ -22,7 +23,7 @@ const GameList = ({games}) => {
             imgSrc={game.background_image}
             releaseDate={game.released}
             rating={game.rating.toFixed(1)}
-            onClick={() => onClickItem(game.slug)}
+            slug={game.slug}
           />
         )
       })}

@@ -4,14 +4,17 @@ $orange: #f3b51f;
 $blue: #ada3ff;
 $grey: grey;
 $lightGrey: #e8d6d6;
+$red: red;
+$black: #171111;
 
 // font size
+$small-font-size: 13px;
 $primary-font-size: 16px;
 $secondary-font-size: 18px;
 $medium-font-size: 22px;
 
 // main styles
-$body-bg: #171111;
-$small-margin-bottom: 5px;
-$medium-margin-bottom: 10px;
-$large-margin-bottom: 20px;
+$body-bg: $black;
+$small-margin: 5px;
+$medium-margin: 10px;
+$large-margin: 20px;

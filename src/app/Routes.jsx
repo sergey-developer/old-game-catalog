@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 
 import NotFound from '../shared/components/NotFound'
 
-const ShowcaseGamesPage = lazy(() => import('../pages/ShowcaseGamesPage/ShowcaseGamesPage'))
+const ShowcaseGamesPage = lazy(() => import('../pages/GamesShowcasePage/GamesShowcasePage'))
 const GamePage = lazy(() => import('../pages/GamePage/GamePage'))
 
 const Routes = () => {

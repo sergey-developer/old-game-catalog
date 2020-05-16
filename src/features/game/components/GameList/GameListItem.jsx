@@ -1,8 +1,8 @@
 import React from 'react'
 
-const GameListItem = ({name, imgSrc, rating, releaseDate, onClick}) => {
+const GameListItem = ({name, imgSrc, rating, releaseDate, slug}) => {
   return(
-    <div className='game-list__item' onClick={onClick}>
+    <div className='game-list__item' data-slug={slug}>
       <img
         className='game-list__item-image'
         src={imgSrc}
@@ -14,7 +14,7 @@ const GameListItem = ({name, imgSrc, rating, releaseDate, onClick}) => {
           <h6 className='game-list__item-name'>{name}</h6>
           <div className='game-list__item-info-footer'>
             <span className='game-list__item-release-date'>
-              Release: {releaseDate}
+              Release: {releaseDate || 'Unknown'}
             </span>
             <span className='game-list__item-rating'>{rating}</span>
           </div>

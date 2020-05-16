@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react'
 import debounce from 'lodash.debounce'
 
 import './styles.scss'
-
 import GameList from '../../features/game/components/GameList/GameList'
 import SearchBar from '../../shared/components/SearchBar/SearchBar'
 import Dropdown from '../../shared/components/Dropdown/Dropdown'
@@ -21,8 +20,8 @@ const initialFilters = {
     lastFilterValue: null
   }
 } // if loading prevent reverting by adding spinner in dropdown
-// add icon component with styles like in dropdown button
-const ShowcaseGamesPage = () => {
+// add icon component with styles like in dropdown icon
+const GamesShowcasePage = () => {
   const [filter, setFilter] = useState(initialFilters)
   const [gameList, setGamesList] = useState([])
   const {games, gameError, nextPage} = useAllGames(filter)
@@ -75,37 +74,41 @@ const ShowcaseGamesPage = () => {
     } else {
       reversedFilterValue = option.id
     }
-    console.log(filter.meta.lastFilterName, ': FilterName')
-    console.log(reversedFilterValue, ': reversedFilterValue')
-    // setFilter({
-    // ...filter,
-    // [filterName]: reversedFilterValue,
-    // page: null,
-    // meta: {lastFilterName: filterName}
-    // })
+
+    setFilter({
+      ...filter,
+      [filterName]: reversedFilterValue,
+      page: null,
+      meta: {lastFilterName: filterName}
+    })
   }
 
-  // sorting - page: 1, pageSize: gameList.length
-  // page - get prev page after sorting otherwise get prev page + 1 and set pageSize = 20
+  const handleClearFilter = (filterName) => {
+    if (!!filter[filterName]) {
+      setFilter({...filter, [filterName]: null})
+    }
+  }
 
   return (
-    <div className='showcase-games-page'>
+    <div className='games-showcase-page'>
       <SearchBar
         onSearch={debounce(handleSearch, 500)}
       >
         <Dropdown
           title='Sort by:'
           titleWithName
-          defaultOptionId={'released'}
           options={sortOptions}
           onClick={(option) => handleChangeFilter(option, 'ordering')}
-          reversible
+          reversibleOption
           onReverse={handleReverseSort}
+          onClear={() => handleClearFilter('ordering')}
         />
         <Dropdown
-          title='Platforms'
+          title='Platform:'
+          titleWithName
           options={platforms}
           onClick={(option) => handleChangeFilter(option, 'platforms')}
+          onClear={() => handleClearFilter('platforms')}
         />
       </SearchBar>
       <GameList games={gameList}/>
@@ -113,4 +116,4 @@ const ShowcaseGamesPage = () => {
   )
 }
 
-export default ShowcaseGamesPage
+export default GamesShowcasePage

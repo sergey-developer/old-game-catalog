@@ -9,7 +9,6 @@ const usePlatforms = () => {
     response,
     isLoading,
     error,
-    setResponse,
     setLoading
   } = useRequest(PlatformService.getAll)
 

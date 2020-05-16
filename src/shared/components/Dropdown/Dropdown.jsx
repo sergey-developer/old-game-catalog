@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 
 import './styles.scss'
+import ArrowUpIcon from '../Icon/ArrowUpIcon'
 
 const emptyOption =
   <span className='dropdown__option dropdown__option-empty'>
@@ -9,20 +10,19 @@ const emptyOption =
 
 const Dropdown = (props) => {
   const {
+    className,
     title,
     options = [],
     onClick,
     onReverse,
-    reversible = false,
+    onClear,
+    reversibleOption = false,
     titleWithName,
-    keepOpen = false,
-    defaultOptionId
+    keepOpen = false
   } = props
-
-  const defaultOption = options.find(opt => opt.id === defaultOptionId)
   const [isOpen, setOpen] = useState(false)
   const [shouldReverse, setReverse] = useState(false)
-  const [selectedOption, setOption] = useState(defaultOption)
+  const [selectedOption, setOption] = useState(null)
 
   const handleClickDropdown = () => {
     setOpen(prevState => !prevState)
@@ -31,7 +31,7 @@ const Dropdown = (props) => {
   const handleClickOption = (option) => {
     setOption(option)
 
-    reversible && setReverse(false)
+    reversibleOption && setReverse(false)
     !keepOpen && setOpen(false)
     onClick(option)
   }
@@ -42,11 +42,17 @@ const Dropdown = (props) => {
     onReverse(!shouldReverse, selectedOption)
   }
 
-  const up = '+'
+  const handleClear = (event) => {
+    event.stopPropagation()
+    setOption(null)
+    reversibleOption && setReverse(false)
+    onClear()
+  }
+
+  const up = <ArrowUpIcon/>
   const down = '-'
   return (
-    // <div className={`dropdown ${titleWithName ? 'dropdown-fluid' : ''}`}>
-    <div className='dropdown'>
+    <div className={`dropdown ${className ? className : ''}`}>
       <div className='dropdown__button' onClick={handleClickDropdown}>
         <span className='dropdown__title'>
           {title} {titleWithName && selectedOption?.name}
@@ -54,24 +60,34 @@ const Dropdown = (props) => {
         <span className='dropdown__icon'>^</span>
       </div>
       {isOpen &&
-        <div className='dropdown__options'>
-          {options.length
-            ? options.map(opt => {
-                const isSelected = opt.id === selectedOption?.id
+        <div className='dropdown__content'>
+          <div className='dropdown__content-header'>
+            <span
+              className='dropdown__content-button'
+              onClick={handleClear}
+            >
+              Clear
+            </span>
+          </div>
+          <div className='dropdown__options'>
+            {options.length
+              ? options.map(opt => {
+                  const isSelected = opt.id === selectedOption?.id
 
-                return (
-                  <div
-                    key={opt.id}
-                    className={`dropdown__option ${isSelected ? 'dropdown__option-active' : ''}`}
-                    onClick={() => handleClickOption(opt)}
-                  >
-                    <span>{opt.name}</span>
-                    {reversible && isSelected &&
-                      <span onClick={handleClickReverse}>{shouldReverse ? down : up}</span>
-                    }
-                  </div>)})
-            : emptyOption
-          }
+                  return (
+                    <div
+                      key={opt.id}
+                      className={`dropdown__option ${isSelected ? 'dropdown__option-active' : ''}`}
+                      onClick={() => handleClickOption(opt)}
+                    >
+                      <span>{opt.name}</span>
+                      {reversibleOption && isSelected &&
+                        <i onClick={handleClickReverse}>{shouldReverse ? down : up}</i>
+                      }
+                    </div>)})
+              : emptyOption
+            }
+          </div>
         </div>
       }
     </div>

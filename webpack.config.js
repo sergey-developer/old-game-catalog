@@ -46,6 +46,10 @@ module.exports = {
           loader: 'html-loader',
           options: {minimize: true}
         }
+      },
+      {
+        test: /\.svg$/,
+        loader: 'svg-inline-loader'
       }
     ]
   },
