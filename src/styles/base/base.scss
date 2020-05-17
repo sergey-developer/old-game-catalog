@@ -1,0 +1,152 @@
+@import "src/styles/variables";
+
+body {
+  background: $body-bg;
+  color: $body-color;
+  font-size: $body-font-size;
+  font-family: sans-serif;
+  line-height: 1.3;
+}
+
+a {
+  text-decoration: none;
+  color: $blue;
+}
+
+h1, h2, h3, h4, h5, h6, input {
+  font-size: inherit;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+}
+
+input, textarea {
+  border: none;
+  padding: 0;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.text-dots {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+//@media screen and (min-width: 480px) {
+  //.icon {
+  //  width: 25px;
+  //  height: 25px;
+  //}
+  //.dropdown__option .dropdown__option-icon {
+  //  width: 20px !important;
+  //  height: 20px !important;
+  //}
+
+  //.slider {
+  //  .slider__content {
+  //    .slider__header {
+  //      margin-bottom: 25px !important;
+  //
+  //      .slider__controls {
+  //        .slider__arrows {
+  //          width: 110px !important;
+  //        }
+  //
+  //        .icon {
+  //          width: 35px;
+  //          height: 35px;
+  //        }
+  //      }
+  //    }
+  //
+  //    .slider__slides {
+  //      .slider__slides-wrapper {
+  //        .slider__image {
+  //          width: 150px;
+  //          height: 86px;
+  //        }
+  //      }
+  //    }
+  //  }
+  //}
+//}
+
+@media screen and (min-width: 768px) {
+  //body {
+  //  font-size: $primary-regular-font-size;
+  //}
+
+  .game-page {
+    .game {
+      .game__about-block {
+        .game__name {
+          font-size: $secondary-medium-font-size !important;
+        }
+      }
+
+      .game__screenshots-preview-block {
+        .game__screenshots {
+          .game__screenshot {
+            width: 220px;
+            height: 120px;
+          }
+        }
+      }
+    }
+  }
+
+  .games-showcase-page {
+    .dropdown {
+      width: 49% !important;
+      height: 50px;
+
+      .dropdown__content {
+        top: 53px;
+      }
+    }
+
+    .search-bar__input-search {
+      height: 50px !important;
+    }
+
+    .game-list {
+      .game-list__item {
+        .game-list__item-name {
+          font-size: $secondary-medium-font-size;
+        }
+      }
+    }
+  }
+
+  //.slider {
+  //  .slider__content {
+  //    .slider__header {
+  //      margin-bottom: 35px !important;
+  //
+  //      .slider__controls {
+  //        .slider__arrows {
+  //          width: 130px !important;
+  //        }
+  //
+  //        .icon {
+  //          width: 40px;
+  //          height: 40px;
+  //        }
+  //      }
+  //    }
+  //
+  //    .slider__body {
+  //      .slider__image-active {
+  //        max-height: 350px;
+  //      }
+  //    }
+  //  }
+  //}
+}

@@ -1,0 +1,8 @@
+@import "src/styles/variables";
+
+@media screen and (min-width: $wide-mobile-width) {
+  .icon {
+    width: 25px;
+    height: 25px;
+  }
+}

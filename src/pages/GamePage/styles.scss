@@ -13,15 +13,17 @@
 
     .game__poster {
       width: 100%;
-      height: 240px; // to common css
-      text-align: center;
-      line-height: 240px;
+      //height: 240px; // to common css
       margin-bottom: $large-margin;
+
+      &-image {
+        object-fit: contain;
+      }
     }
 
     .game__name {
       color: $orange;
-      font-size: $medium-font-size;
+      font-size: $primary-medium-font-size;
       margin-bottom: $medium-margin;
     }
 
@@ -51,12 +53,15 @@
     }
   }
 
-  &__release-date, &__website, &__rating {
+  &__rating {
+    margin-bottom: $large-margin;
+  }
+  &__release-date, &__website {
     margin-bottom: $small-margin;
   }
 
   &__screenshots-title, &__description-title {
-    font-size: $medium-font-size;
+    font-size: $primary-medium-font-size;
     margin-bottom: $medium-margin;
   }
 }

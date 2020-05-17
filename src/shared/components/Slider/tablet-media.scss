@@ -1,0 +1,28 @@
+@import "src/styles/variables";
+
+@media screen and (min-width: $tablet-width) {
+  .slider {
+    .slider__content {
+      .slider__header {
+        margin-bottom: 35px !important;
+
+        .slider__controls {
+          .slider__arrows {
+            width: 130px !important;
+          }
+
+          .icon {
+            width: 40px;
+            height: 40px;
+          }
+        }
+      }
+
+      .slider__body {
+        .slider__image-active {
+          max-height: 350px;
+        }
+      }
+    }
+  }
+}

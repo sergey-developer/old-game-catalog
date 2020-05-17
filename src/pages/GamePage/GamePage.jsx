@@ -29,6 +29,7 @@ const GamePage = ({match}) => {
         <div className='game__about-block'>
           <div className='game__poster'>
             <img
+              className='game__poster-image'
               src={game.background_image || game.background_image_additional}
               alt={game.name}
               loading='lazy'

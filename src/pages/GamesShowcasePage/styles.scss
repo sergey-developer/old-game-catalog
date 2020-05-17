@@ -1,3 +1,5 @@
+@import './src/styles/variables';
+
 .games-showcase-page {
   display: flex;
   flex-direction: column;
@@ -13,6 +15,10 @@
   }
 
   .dropdown {
-    width: 49%;
+    width: 100%;
+
+    &:not(:last-child) {
+      margin-bottom: $medium-margin;
+    }
   }
 }

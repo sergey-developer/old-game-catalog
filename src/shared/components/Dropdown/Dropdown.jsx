@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 
 import './styles.scss'
-import ArrowUpIcon from '../Icon/ArrowUpIcon'
+import Icon from '../Icon/Icon'
 
 const emptyOption =
   <span className='dropdown__option dropdown__option-empty'>
@@ -49,15 +49,16 @@ const Dropdown = (props) => {
     onClear()
   }
 
-  const up = <ArrowUpIcon/>
-  const down = '-'
   return (
     <div className={`dropdown ${className ? className : ''}`}>
       <div className='dropdown__button' onClick={handleClickDropdown}>
-        <span className='dropdown__title'>
+        <span className='dropdown__title text-dots'>
           {title} {titleWithName && selectedOption?.name}
         </span>
-        <span className='dropdown__icon'>^</span>
+        <Icon
+          className='dropdown__button-icon'
+          name={isOpen ? 'angle-down' : 'angle-up'}
+        />
       </div>
       {isOpen &&
         <div className='dropdown__content'>
@@ -82,7 +83,11 @@ const Dropdown = (props) => {
                     >
                       <span>{opt.name}</span>
                       {reversibleOption && isSelected &&
-                        <i onClick={handleClickReverse}>{shouldReverse ? down : up}</i>
+                        <Icon
+                          className='dropdown__option-icon'
+                          name={shouldReverse ? 'arrow-down' : 'arrow-up'}
+                          onClick={handleClickReverse}
+                        />
                       }
                     </div>)})
               : emptyOption

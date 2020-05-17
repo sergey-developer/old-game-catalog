@@ -11,7 +11,7 @@ const GameListItem = ({name, imgSrc, rating, releaseDate, slug}) => {
       />
       <div className='game-list__item-info-block'>
         <div className='game-list__item-info'>
-          <h6 className='game-list__item-name'>{name}</h6>
+          <h6 className='game-list__item-name text-dots'>{name}</h6>
           <div className='game-list__item-info-footer'>
             <span className='game-list__item-release-date'>
               Release: {releaseDate || 'Unknown'}

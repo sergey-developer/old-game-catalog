@@ -8,13 +8,27 @@ $red: red;
 $black: #171111;
 
 // font size
-$small-font-size: 13px;
-$primary-font-size: 16px;
-$secondary-font-size: 18px;
-$medium-font-size: 22px;
+$very-small-font-size: 15px;
+$small-font-size: 18px; // 13 to 17
+$primary-regular-font-size: 20px; // 16 to 20
+$secondary-regular-font-size: 26px; // 18 to 26
+$primary-medium-font-size: 28px; // 22 to 30
+$secondary-medium-font-size: 30px;
 
-// main styles
-$body-bg: $black;
+// margin
 $small-margin: 5px;
 $medium-margin: 10px;
 $large-margin: 20px;
+
+// z-index
+$dropdown-z-index: 1;
+$slider-z-index: 10;
+
+// media
+$wide-mobile-width: 480px;
+$tablet-width: 768px;
+
+// main styles
+$body-bg: $black;
+$body-color: $white;
+$body-font-size: $small-font-size;

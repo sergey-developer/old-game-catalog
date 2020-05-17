@@ -1,0 +1,7 @@
+@import "src/styles/variables";
+
+@media screen and (min-width: $tablet-width) {
+  body {
+    font-size: $primary-regular-font-size;
+  }
+}

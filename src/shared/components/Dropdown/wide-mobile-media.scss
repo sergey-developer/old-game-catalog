@@ -1,0 +1,8 @@
+@import "src/styles/variables";
+
+@media screen and (min-width: $wide-mobile-width) {
+  .dropdown__option .dropdown__option-icon {
+    width: 20px !important;
+    height: 20px !important;
+  }
+}
