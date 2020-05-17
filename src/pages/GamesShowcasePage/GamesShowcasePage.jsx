@@ -21,7 +21,7 @@ const initialFilters = {
   }
 } // if loading prevent reverting by adding spinner in dropdown
 // add icon component with styles like in dropdown icon
-const GamesShowcasePage = () => {
+const GamesShowcasePage = ({history}) => {
   const [filter, setFilter] = useState(initialFilters)
   const [gameList, setGamesList] = useState([])
   const {games, gameError, nextPage} = useAllGames(filter)
@@ -39,6 +39,13 @@ const GamesShowcasePage = () => {
       }
     }
   }, [games])
+
+  // make hook
+  // useEffect(() => {
+  //   history.push({
+  //     search: `?page=${filter.page}`
+  //   })
+  // }, [filter])
 
   function handleInfinityScroll() {
     if (nextPage) {

@@ -1,0 +1,10 @@
+@import "src/styles/variables";
+
+@media screen and (min-width: $wide-mobile-width) {
+  .games-showcase-page {
+    .dropdown {
+      width: 49% !important;
+      margin-bottom: 0 !important;
+    }
+  }
+}
