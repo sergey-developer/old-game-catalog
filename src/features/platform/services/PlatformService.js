@@ -12,8 +12,7 @@ class PlatformService {
   }
 
   getAll = async () => {
-    let url = '/platforms'
-    return this.api.get(url)
+    return this.api.get('/platforms')
   }
 }
 

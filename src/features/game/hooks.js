@@ -43,8 +43,8 @@ const useOneGame = (gameSlug) => {
 
   return {
     game: response,
-    isLoading,
-    error
+    gameIsLoading: isLoading,
+    gameError: error
   }
 }
 

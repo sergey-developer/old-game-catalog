@@ -1,0 +1,26 @@
+@import "src/styles/variables";
+
+@media screen and (min-width: $tablet-width) {
+  .games-showcase-page {
+    .dropdown {
+      width: 49% !important;
+      height: 50px;
+
+      .dropdown__content {
+        top: 53px;
+      }
+    }
+
+    .search-bar__input-search {
+      height: 50px !important;
+    }
+
+    .game-list {
+      .game-list__item {
+        .game-list__item-name {
+          font-size: $secondary-medium-font-size;
+        }
+      }
+    }
+  }
+}

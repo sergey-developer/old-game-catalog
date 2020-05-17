@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 
 import './styles.scss'
-import Icon from '../Icon/Icon'
+import Icon from '../Icon'
 
 const emptyOption =
   <span className='dropdown__option dropdown__option-empty'>

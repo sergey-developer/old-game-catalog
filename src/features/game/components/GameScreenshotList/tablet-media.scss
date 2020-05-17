@@ -1,0 +1,12 @@
+@import "src/styles/variables";
+
+@media screen and (min-width: $tablet-width) {
+  .game-screenshots__container {
+    .game-screenshots__list {
+      .game-screenshots__screenshot {
+        width: 220px;
+        height: 120px;
+      }
+    }
+  }
+}

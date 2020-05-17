@@ -1,4 +1,6 @@
 @import "./src/styles/variables";
+@import "./wide-mobile-media";
+@import "./tablet-media";
 
 .slider {
   position: fixed;
@@ -40,7 +42,6 @@
       margin-bottom: $large-margin;
 
       .slider__image-active {
-        object-fit: contain;
         max-height: 350px;
         //animation: slide-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
       }
@@ -55,8 +56,8 @@
         transition: transform 300ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
 
         .slider__image {
-          width: 100px;
-          height: 56px;
+          width: 120px;
+          height: 76px;
           opacity: 0.5;
           cursor: pointer;
 

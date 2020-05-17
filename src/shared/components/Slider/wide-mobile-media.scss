@@ -7,10 +7,6 @@
         margin-bottom: 25px !important;
 
         .slider__controls {
-          .slider__arrows {
-            width: 110px !important;
-          }
-
           .icon {
             width: 35px;
             height: 35px;
@@ -18,14 +14,14 @@
         }
       }
 
-      .slider__slides {
-        .slider__slides-wrapper {
-          .slider__image {
-            width: 150px;
-            height: 86px;
-          }
-        }
-      }
+      //.slider__slides {
+      //  .slider__slides-wrapper {
+      //    .slider__image {
+      //      //width: 150px;
+      //      //height: 86px;
+      //    }
+      //  }
+      //}
     }
   }
 }

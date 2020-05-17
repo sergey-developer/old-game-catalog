@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 
 import './styles.scss'
-import Icon from '../Icon/Icon'
+import Icon from '../Icon'
 // fix logic for last, first, next, prev - item
 const Slider = (props) => {
   const {
@@ -88,7 +88,7 @@ const Slider = (props) => {
         </div>
         <div className='slider__slides'>
           <div className="slider__slides-wrapper" style={{
-            'transform': `translateX(-${activeItemIndex*(150/data.length)}%)`
+            'transform': `translateX(-${activeItemIndex*(120/data.length)}%)`
           }}>
             {data.map((item, index) => {
               const isActive = item.id === activeItem.id

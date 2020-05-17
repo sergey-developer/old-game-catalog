@@ -3,19 +3,21 @@ import React, {useState} from 'react'
 import './styles.scss'
 import {useOneGame, useOneGameScreenshots} from '../../features/game/hooks'
 import Slider from '../../shared/components/Slider/Slider'
+import Spinner from '../../shared/components/Spinner/Spinner'
+import GameScreenshotList from '../../features/game/components/GameScreenshotList/GameScreenshotList'
 
-// make go back icon
 const GamePage = ({match}) => {
   const {slug} = match.params
   const [isOpenSlider, setOpenSlider] = useState(false)
   const [screenshot, setScreenshot] = useState(null)
-  const {game, isLoading, error} = useOneGame(slug)
-  const {screenshots, count, screenshotsIsLoading} = useOneGameScreenshots(slug)
-
-  if (isLoading) {
-    return (
-      <div>Loading</div>
-    )
+  const {game, gameIsLoading, gameError} = useOneGame(slug)
+  const {screenshots, count, screenshotsIsLoading, screenshotsError} = useOneGameScreenshots(slug)
+  // use count
+  if (gameIsLoading) {
+    return <Spinner/>
+  }
+  if (gameError) {
+    return <div>Error: {gameError.message}</div>
   }
 
   const handleClickScreenshot = (screenshot) => {
@@ -55,28 +57,18 @@ const GamePage = ({match}) => {
             <p className='game__description-text'>{game.description_raw}</p>
           </div>
         </div>
-        <div className='game__screenshots-preview-block'>
-          <span className='game__screenshots-title'>Screenshots</span>
-          {screenshotsIsLoading ? <div>Screenshots loading</div>
-            : <div className='game__screenshots'>
-                {screenshots.map(s => (
-                  <img
-                    className='game__screenshot'
-                    key={s.id}
-                    src={s.image}
-                    alt=""
-                    onClick={() => handleClickScreenshot(s)}
-                  />
-                ))}
-              <Slider
-                isOpen={isOpenSlider}
-                setOpen={setOpenSlider}
-                data={screenshots}
-                defaultItem={screenshot}
-              />
-            </div>
-          }
-        </div>
+        <GameScreenshotList
+          screenshots={screenshots}
+          onClick={handleClickScreenshot}
+          isLoading={screenshotsIsLoading}
+          error={screenshotsError}
+        />
+        <Slider
+          isOpen={isOpenSlider}
+          setOpen={setOpenSlider}
+          data={screenshots}
+          defaultItem={screenshot}
+        />
       </div>
     </div>
   )

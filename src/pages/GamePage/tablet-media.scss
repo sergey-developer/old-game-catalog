@@ -1,0 +1,13 @@
+@import "src/styles/variables";
+
+@media screen and (min-width: $tablet-width) {
+  .game-page {
+    .game {
+      .game__about-block {
+        .game__name {
+          font-size: $secondary-medium-font-size !important;
+        }
+      }
+    }
+  }
+}

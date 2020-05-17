@@ -1,0 +1,27 @@
+@import "src/styles/variables";
+@import "./tablet-media";
+
+.game-screenshots__container {
+  display: flex;
+  flex-direction: column;
+
+  .game-screenshots__title {
+    font-size: $primary-medium-font-size;
+    margin-bottom: $medium-margin;
+  }
+
+  .game-screenshots__list {
+    width: 100%;
+    min-height: 80px;
+
+    .game-screenshots__screenshot {
+      width: 160px;
+      height: 80px;
+      cursor: pointer;
+
+      &:not(:last-child) {
+        margin-right: $small-margin;
+      }
+    }
+  }
+}
