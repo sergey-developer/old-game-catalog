@@ -6,14 +6,11 @@ import GameScreenshotService from './services/GameScreenshotService'
 
 const useAllGames = (filter) => {
   const {meta, ...cleanFilter} = filter
-
   const {
     request,
     response,
     isLoading,
-    error,
-    setResponse,
-    setLoading
+    error
   } = useRequest(() => GameService.getAll(cleanFilter))
 
   useEffect(() => {
@@ -23,9 +20,8 @@ const useAllGames = (filter) => {
   return {
     games: response?.result,
     nextPage: response?.nextPage,
-    isLoading,
-    error,
-    setLoading
+    allGamesIsLoading: isLoading,
+    allGamesError: error
   }
 }
 
@@ -62,7 +58,6 @@ const useOneGameScreenshots = (gameSlug) => {
 
   return {
     screenshots: response?.result,
-    count: response?.count || 0,
     screenshotsIsLoading: isLoading,
     screenshotsError: error
   }

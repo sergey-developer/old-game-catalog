@@ -2,75 +2,55 @@ import React, {useState} from 'react'
 
 import './styles.scss'
 import Icon from '../Icon'
-// fix logic for last, first, next, prev - item
+
 const Slider = (props) => {
   const {
     isOpen,
     setOpen,
-    data,
-    defaultItem
+    slides,
+    defaultSlide
   } = props
   if (!isOpen) return null
-  const [activeItem, setActiveItem] = useState(defaultItem)
-  // const isFirstItem = activeItem.index === 0
-  // const isLastItem = activeItem.index === data.length - 1
-  // const callback = (entries, observer) => {
-  //   entries.forEach((e, index, arr) => {
-  //     const firstElement = arr[0]
-  //     console.log(firstElement)
-  //   })
-  // }
-  // const ref = useRef(null);
-  // function getObserver() {
-  //   if (ref.current === null) {
-  //     ref.current = new IntersectionObserver(callback, {
-  //       root: document.querySelector('.slider__footer'),
-  //       threshold: 0.5
-  //     });
-  //   }
-  //   return ref.current;
-  // }
-  //
-  // useEffect(() => {
-  //   const observer = getObserver()
-  //   document.querySelectorAll('.slider__image').forEach((element) => {
-  //     observer.observe(element)
-  //   })
-  //   // const target = document.querySelector('img')
-  //   // observer.observe(target)
-  // }, [])
+  const [activeSlide, setActiveSlide] = useState(defaultSlide)
+  const [activeIndex, setActiveIndex] = useState(() => slides.findIndex(slide => slide.id === defaultSlide.id))
 
   const handleCloseSlider = (event) => {
     event.stopPropagation()
     setOpen(false)
   }
 
-  const handleClickItem = (event, item, index) => {
+  const handleClickSlide = (event, slide, index) => {
     event.stopPropagation()
-    setActiveItem(item)
+    setActiveSlide(slide)
+    setActiveIndex(index)
   }
 
-  const selectPrevItem = () => {
-    const activeItemIndex = data.findIndex(item => item.id === activeItem.id)
-    const prevItem = data[activeItemIndex - 1]
-    prevItem && setActiveItem(prevItem)
+  const setPrev = () => {
+    const prevIndex = activeIndex - 1
+    const prevItem = slides[prevIndex]
+    if (prevItem) {
+      setActiveSlide(prevItem)
+      setActiveIndex(prevIndex)
+    }
   }
 
-  const selectNextItem = () => {
-    const activeItemIndex = data.findIndex(item => item.id === activeItem.id)
-    const nextItem = data[activeItemIndex + 1]
-    nextItem && setActiveItem(nextItem)
+  const setNext = () => {
+    const nextIndex = activeIndex + 1
+    const nextItem = slides[nextIndex]
+    if (nextItem) {
+      setActiveSlide(nextItem)
+      setActiveIndex(nextIndex)
+    }
   }
 
-  const activeItemIndex = data.findIndex(item => item.id === activeItem.id)
   return (
     <div className='slider'>
       <div className='slider__content'>
         <div className='slider__header'>
           <div className='slider__controls'>
-            <div className='slider__arrows'>
-              <Icon name='angle-left' onClick={selectPrevItem}/>
-              <Icon name='angle-right' onClick={selectNextItem}/>
+            <div className='slider__control-buttons'>
+              <Icon name='angle-left' onClick={setPrev}/>
+              <Icon name='angle-right' onClick={setNext}/>
             </div>
             <Icon
               className='slider__close-button'
@@ -81,22 +61,22 @@ const Slider = (props) => {
         </div>
         <div className='slider__body'>
           <img
-            src={activeItem.image}
-            className='slider__image-active'
+            src={activeSlide.image}
+            className='slider__slide--active'
             alt=""
           />
         </div>
         <div className='slider__slides'>
           <div className="slider__slides-wrapper" style={{
-            'transform': `translateX(-${activeItemIndex*(120/data.length)}%)`
+            'transform': `translateX(-${activeIndex * (120 / slides.length)}%)`
           }}>
-            {data.map((item, index) => {
-              const isActive = item.id === activeItem.id
+            {slides.map((slide, index) => {
+              const isSelected = slide.id === activeSlide.id
               return <img
-                className={`slider__image ${isActive ? 'slider__image--selected' : ''}`}
-                key={item.id}
-                src={item.image}
-                onClick={(event) => handleClickItem(event, item, index)}
+                className={`slider__slide ${isSelected ? 'slider__slide--selected' : ''}`}
+                key={slide.id}
+                src={slide.image}
+                onClick={(event) => handleClickSlide(event, slide, index)}
                 alt=""
               />
             })}
@@ -105,6 +85,12 @@ const Slider = (props) => {
       </div>
     </div>
   )
+}
+
+Slider.defaultProps = {
+  slides: [],
+  defaultSlide: {},
+  isOpen: false
 }
 
 export default Slider

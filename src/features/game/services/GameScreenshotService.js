@@ -1,4 +1,5 @@
 import HttpService from '../../../shared/services/HttpService/HttpService'
+import {GET_ALL_GAME_SCREENSHOTS_PATH} from '../../../shared/constants/api'
 
 let Singleton = null
 class GameScreenshotService {
@@ -12,10 +13,10 @@ class GameScreenshotService {
   }
 
   getAllByGameSlug = async (slug) => {
-    const response = await this.api.get(`/games/${slug}/screenshots`)
+    const url = GET_ALL_GAME_SCREENSHOTS_PATH.replace(':slug', slug)
+    const response = await this.api.get(url)
     
     return {
-      count: response.count,
       result: response.results
     }
   }

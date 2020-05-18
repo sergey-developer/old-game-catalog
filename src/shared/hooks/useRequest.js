@@ -6,11 +6,10 @@ const useRequest = (callback) => {
   const [error, setError] = useState(null)
 
   const request = useCallback(async () => {
-    // setLoading(true)
-    // setError(null)
     try {
       const response = await callback()
       setResponse(response)
+      setError(null)
     } catch (exception) {
       setError(exception)
     } finally {

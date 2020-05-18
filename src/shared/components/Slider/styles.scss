@@ -24,7 +24,7 @@
         display: flex;
         justify-content: center;
 
-        .slider__arrows {
+        .slider__control-buttons {
           display: flex;
           justify-content: space-between;
           width: 90px;
@@ -41,9 +41,8 @@
     .slider__body {
       margin-bottom: $large-margin;
 
-      .slider__image-active {
+      .slider__slide--active {
         max-height: 350px;
-        //animation: slide-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
       }
     }
 
@@ -55,7 +54,7 @@
         position: absolute;
         transition: transform 300ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
 
-        .slider__image {
+        .slider__slide {
           width: 120px;
           height: 76px;
           opacity: 0.5;
@@ -73,14 +72,3 @@
     }
   }
 }
-
-//@keyframes slide-left {
-//  0% {
-//    -webkit-transform: translateX(0);
-//    transform: translateX(0);
-//  }
-//  100% {
-//    -webkit-transform: translateX(-100px);
-//    transform: translateX(-100px);
-//  }
-//}

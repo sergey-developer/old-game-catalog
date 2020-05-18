@@ -6,8 +6,9 @@ import GameList from '../../features/game/components/GameList/GameList'
 import SearchBar from '../../shared/components/SearchBar/SearchBar'
 import Dropdown from '../../shared/components/Dropdown/Dropdown'
 import {useAllGames} from '../../features/game/hooks'
-import {usePlatforms} from '../../features/platform/hooks'
+import {useAllPlatforms} from '../../features/platform/hooks'
 import useInfinityScroll from '../../shared/hooks/useInfinityScroll'
+import {makeQueryString} from '../../shared/helpers/url'
 
 const sortOptions = [{id: 'released', name: 'Release date'}, {id: 'rating', name: 'Rate'}]
 const initialFilters = {
@@ -19,20 +20,18 @@ const initialFilters = {
     lastFilterName: '',
     lastFilterValue: null
   }
-} // if loading prevent reverting by adding spinner in dropdown
-// add icon component with styles like in dropdown icon
+}
+
 const GamesShowcasePage = ({history}) => {
   const [filter, setFilter] = useState(initialFilters)
   const [gameList, setGamesList] = useState([])
-  const {games, gameError, nextPage} = useAllGames(filter)
-  const {platforms, platformError} = usePlatforms()
+  const {games, nextPage, allGamesIsLoading, allGamesError} = useAllGames(filter)
+  const {allPlatforms, allPlatformsIsLoading} = useAllPlatforms()
   const {setScrollBottomReached} = useInfinityScroll(debounce(handleInfinityScroll, 400))
 
   useEffect(() => {
     if (games) {
       if (filter.meta.lastFilterName === 'page') {
-        // unique gameList before setting
-        // display filters to url
         setGamesList([...gameList, ...games])
       } else {
         setGamesList(games)
@@ -40,12 +39,14 @@ const GamesShowcasePage = ({history}) => {
     }
   }, [games])
 
-  // make hook
-  // useEffect(() => {
-  //   history.push({
-  //     search: `?page=${filter.page}`
-  //   })
-  // }, [filter])
+  useEffect(() => {
+    const {meta, ...cleanFilter} = filter
+    history.push({search: makeQueryString(cleanFilter)})
+  }, [filter])
+
+  if (allGamesError) {
+    return <div>Error: {allGamesError.message}</div>
+  }
 
   function handleInfinityScroll() {
     if (nextPage) {
@@ -53,7 +54,7 @@ const GamesShowcasePage = ({history}) => {
       setScrollBottomReached(false)
     }
   }
-  // maybe create separated handlers for sorting and filtering
+
   const handleChangeFilter = (option, filterName) => {
     if (option.id === filter.meta.lastFilterValue) return
 
@@ -100,6 +101,7 @@ const GamesShowcasePage = ({history}) => {
     <div className='games-showcase-page'>
       <SearchBar
         onSearch={debounce(handleSearch, 500)}
+        isLoading={allGamesIsLoading}
       >
         <Dropdown
           title='Sort by:'
@@ -109,16 +111,21 @@ const GamesShowcasePage = ({history}) => {
           reversibleOption
           onReverse={handleReverseSort}
           onClear={() => handleClearFilter('ordering')}
+          isLoading={allGamesIsLoading}
         />
         <Dropdown
           title='Platform:'
           titleWithName
-          options={platforms}
+          options={allPlatforms}
           onClick={(option) => handleChangeFilter(option, 'platforms')}
           onClear={() => handleClearFilter('platforms')}
+          isLoading={allGamesIsLoading || allPlatformsIsLoading}
         />
       </SearchBar>
-      <GameList games={gameList}/>
+      <GameList
+        games={gameList}
+        isLoading={allGamesIsLoading}
+      />
     </div>
   )
 }

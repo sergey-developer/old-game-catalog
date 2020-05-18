@@ -15,22 +15,6 @@ class HttpService extends HttpRequest {
   get = async (url, options = {}) => {
     return this.request(url, {...options, method: 'GET'})
   }
-
-  post = async (url, payload, options = {}) => {
-    return this.request(url, {...options, method: 'POST', body: payload})
-  }
-
-  put = async (url, payload, options = {}) => {
-    return this.request(url, {...options, method: 'PUT', body: payload})
-  }
-
-  patch = async (url, payload, options = {}) => {
-    return this.request(url, {...options, method: 'PATCH', body: payload})
-  }
-
-  delete = async (url, payload, options = {}) => {
-    return this.request(url, {...options, method: 'DELETE', body: payload})
-  }
 }
 
 export default new HttpService()

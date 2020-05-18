@@ -18,9 +18,4 @@ const App = () => {
   )
 }
 
-/*
-code splitting
-fix not found page
- */
-
 export default App

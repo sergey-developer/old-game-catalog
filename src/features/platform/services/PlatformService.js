@@ -1,4 +1,5 @@
 import HttpService from '../../../shared/services/HttpService/HttpService'
+import {GET_ALL_GAMES_PLATFORMS_PATH} from '../../../shared/constants/api'
 
 let Singleton = null
 class PlatformService {
@@ -12,7 +13,7 @@ class PlatformService {
   }
 
   getAll = async () => {
-    return this.api.get('/platforms')
+    return this.api.get(GET_ALL_GAMES_PLATFORMS_PATH)
   }
 }
 

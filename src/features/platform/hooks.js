@@ -3,13 +3,12 @@ import {useEffect} from 'react'
 import useRequest from '../../shared/hooks/useRequest'
 import PlatformService from './services/PlatformService'
 
-const usePlatforms = () => {
+const useAllPlatforms = () => {
   const {
     request,
     response,
     isLoading,
-    error,
-    setLoading
+    error
   } = useRequest(PlatformService.getAll)
 
   useEffect(() => {
@@ -17,13 +16,12 @@ const usePlatforms = () => {
   }, [])
 
   return {
-    platforms: response?.results || [],
-    isLoading,
-    error,
-    setLoading
+    allPlatforms: response?.results,
+    allPlatformsIsLoading: isLoading,
+    allPlatformsError: error,
   }
 }
 
 export {
-  usePlatforms
+  useAllPlatforms
 }

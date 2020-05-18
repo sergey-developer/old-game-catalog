@@ -11,8 +11,8 @@ const GamePage = ({match}) => {
   const [isOpenSlider, setOpenSlider] = useState(false)
   const [screenshot, setScreenshot] = useState(null)
   const {game, gameIsLoading, gameError} = useOneGame(slug)
-  const {screenshots, count, screenshotsIsLoading, screenshotsError} = useOneGameScreenshots(slug)
-  // use count
+  const {screenshots, screenshotsIsLoading, screenshotsError} = useOneGameScreenshots(slug)
+
   if (gameIsLoading) {
     return <Spinner/>
   }
@@ -66,8 +66,8 @@ const GamePage = ({match}) => {
         <Slider
           isOpen={isOpenSlider}
           setOpen={setOpenSlider}
-          data={screenshots}
-          defaultItem={screenshot}
+          slides={screenshots}
+          defaultSlide={screenshot}
         />
       </div>
     </div>

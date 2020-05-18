@@ -1,8 +1,8 @@
 import React from 'react'
 
-const GameListItem = ({name, imgSrc, rating, releaseDate, slug}) => {
+const GameListItem = ({name, imgSrc, rating, releaseDate, onClick}) => {
   return(
-    <div className='game-list__item' data-slug={slug}>
+    <div className='game-list__item' onClick={onClick}>
       <img
         className='game-list__item-image'
         src={imgSrc}

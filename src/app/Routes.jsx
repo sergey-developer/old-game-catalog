@@ -2,18 +2,21 @@ import React, {lazy, Suspense} from 'react'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 
 import NotFound from '../shared/components/NotFound'
+import Spinner from '../shared/components/Spinner/Spinner'
 
 const ShowcaseGamesPage = lazy(() => import('../pages/GamesShowcasePage/GamesShowcasePage'))
 const GamePage = lazy(() => import('../pages/GamePage/GamePage'))
 
-const Routes = () => {
+export const MAIN_PAGE_ROUTE = '/'
+export const GAME_PAGE_ROUTE = '/:slug'
 
+const Routes = () => {
   return(
     <Router>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Spinner/>}>
         <Switch>
-          <Route path='/' exact component={ShowcaseGamesPage}/>
-          <Route path='/:slug' exact component={GamePage}/>
+          <Route path={MAIN_PAGE_ROUTE} exact component={ShowcaseGamesPage}/>
+          <Route path={GAME_PAGE_ROUTE} exact component={GamePage}/>
           <Route component={NotFound}/>
         </Switch>
       </Suspense>

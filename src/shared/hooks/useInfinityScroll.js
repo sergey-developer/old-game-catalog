@@ -6,7 +6,6 @@ const useInfiniteScroll = (callback) => {
   useEffect(() => {
     const handleScroll = () => {
       if (document.documentElement.scrollHeight - document.documentElement.scrollTop !== document.documentElement.clientHeight || isScrollBottomReached) return
-      // if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight || isScrollBottomReached) return
       setScrollBottomReached(true)
     }
 

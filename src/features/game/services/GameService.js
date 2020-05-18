@@ -1,5 +1,6 @@
 import HttpService from '../../../shared/services/HttpService/HttpService'
 import {getQueryStringFromUrl, makeQueryString} from '../../../shared/helpers/url'
+import {GET_ALL_GAMES_PATH} from '../../../shared/constants/api'
 
 let Singleton = null
 class GameService {
@@ -14,10 +15,11 @@ class GameService {
 
   getAll = async (filter) => {
     const qs = makeQueryString(filter)
-    const response = await this.api.get(`/games${qs}`)
+    const url = GET_ALL_GAMES_PATH + qs
+    const response = await this.api.get(url)
 
-    const queryString = getQueryStringFromUrl(response.next)
-    const nextPage = new URLSearchParams(queryString).get('page')
+    const qsFromUrl = getQueryStringFromUrl(response.next)
+    const nextPage = new URLSearchParams(qsFromUrl).get('page')
 
     return {
       result: response.results,

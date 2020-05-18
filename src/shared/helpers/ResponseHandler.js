@@ -12,23 +12,24 @@ class ResponseHandler {
     try {
       return response.json()
     } catch (e) {
-      throw e // add custom error for passing the raw error to it
+      throw new Error('Something went wrong')
     }
   }
 
   #handleByCode = (response) => {
-    // console.log(response, 'raw response');
-    // check different status and throw different errors for them
+    if (response.status === 404) {
+      throw new Error('Not found')
+    }
+    if (response.status >= 500) {
+      throw new Error('Something went wrong')
+    }
+
     return response
   }
 
-  handle = async (response) => { // create class response handler
-    try {
-      const rawResponse = this.#handleByCode(response)
-      return this.#parseJson(rawResponse)
-    } catch (e) {
-      throw e // add custom error
-    }
+  handle = async (response) => {
+    const rawResponse = this.#handleByCode(response)
+    return this.#parseJson(rawResponse)
   }
 }
 

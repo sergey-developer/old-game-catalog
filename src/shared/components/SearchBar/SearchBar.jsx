@@ -3,7 +3,7 @@ import React, {useState} from 'react'
 import './styles.scss'
 import TextInput from '../TextInput/TextInput'
 
-const SearchBar = ({onSearch, children}) => {
+const SearchBar = ({onSearch, isLoading, children}) => {
   const [searchValue, setSearchValue] = useState('')
 
   const handleChange = (event) => {
@@ -21,6 +21,7 @@ const SearchBar = ({onSearch, children}) => {
           onChange={handleChange}
           placeholder='Search'
           name='search'
+          disabled={isLoading}
         />
       </div>
       {children &&
@@ -30,6 +31,10 @@ const SearchBar = ({onSearch, children}) => {
       }
     </div>
   )
+}
+
+SearchBar.defaultProps = {
+  isLoading: false
 }
 
 export default SearchBar
