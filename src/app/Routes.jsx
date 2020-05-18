@@ -8,7 +8,7 @@ const ShowcaseGamesPage = lazy(() => import('../pages/GamesShowcasePage/GamesSho
 const GamePage = lazy(() => import('../pages/GamePage/GamePage'))
 
 export const MAIN_PAGE_ROUTE = '/'
-export const GAME_PAGE_ROUTE = '/:slug'
+export const GAME_PAGE_ROUTE = '/game/:slug'
 
 const Routes = () => {
   return(

@@ -4,12 +4,14 @@ import {useHistory} from 'react-router-dom'
 import './styles.scss'
 import GameListItem from './GameListItem'
 import Spinner from '../../../../shared/components/Spinner/Spinner'
+import {GAME_PAGE_ROUTE} from '../../../../app/Routes'
 
 const GameList = ({games, isLoading}) => {
   const history = useHistory()
 
   const onClickItem = (gameSlug) => {
-    history.push(gameSlug)
+    const path = GAME_PAGE_ROUTE.replace(':slug', gameSlug)
+    history.push(path)
   }
 
   const renderList = () => {
