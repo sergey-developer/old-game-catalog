@@ -58,6 +58,7 @@ const GamesShowcasePage = ({history}) => {
   const handleChangeFilter = (option, filterName) => {
     if (option.id === filter.meta.lastFilterValue) return
 
+    setGamesList([])
     setFilter({
       ...filter,
       [filterName]: option.id,
@@ -67,6 +68,7 @@ const GamesShowcasePage = ({history}) => {
   }
   const handleSearch = (event) => {
     const value = event.target.value.trim()
+    setGamesList([])
     setFilter({
       ...filter,
       search: value,
@@ -83,6 +85,7 @@ const GamesShowcasePage = ({history}) => {
       reversedFilterValue = option.id
     }
 
+    setGamesList([])
     setFilter({
       ...filter,
       [filterName]: reversedFilterValue,
@@ -93,6 +96,7 @@ const GamesShowcasePage = ({history}) => {
 
   const handleClearFilter = (filterName) => {
     if (!!filter[filterName]) {
+      setGamesList([])
       setFilter({...filter, [filterName]: null})
     }
   }

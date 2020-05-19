@@ -4,7 +4,7 @@ import './styles.scss'
 import Icon from '../Icon'
 
 const emptyOption =
-  <span className='dropdown__option dropdown__option-empty'>
+<span className='dropdown__option dropdown__option-empty'>
   No options
 </span>
 
@@ -26,7 +26,7 @@ const Dropdown = (props) => {
   const [selectedOption, setOption] = useState({})
 
   const handleClickDropdown = () => {
-    !isLoading && setOpen(prevState => !prevState)
+    setOpen(prevState => !prevState)
   }
 
   const handleClickOption = (option) => {
