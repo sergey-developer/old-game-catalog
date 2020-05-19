@@ -90,14 +90,18 @@ const GamesShowcasePage = ({history}) => {
       ...filter,
       [filterName]: reversedFilterValue,
       page: null,
-      meta: {lastFilterName: filterName}
+      meta: {lastFilterName: filterName, lastFilterValue: reversedFilterValue}
     })
   }
 
   const handleClearFilter = (filterName) => {
     if (!!filter[filterName]) {
       setGamesList([])
-      setFilter({...filter, [filterName]: null})
+      setFilter({
+        ...filter,
+        [filterName]: null,
+        meta: {lastFilterName: '', lastFilterValue: null}
+      })
     }
   }
 

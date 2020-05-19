@@ -1,7 +1,8 @@
-import React, {useState} from 'react'
+import React, {useRef, useState} from 'react'
 
 import './styles.scss'
 import Icon from '../Icon'
+import useOutsideClick from '../../hooks/useOutsideClick'
 
 const emptyOption =
 <span className='dropdown__option dropdown__option-empty'>
@@ -21,9 +22,11 @@ const Dropdown = (props) => {
     keepOpen,
     isLoading
   } = props
+  const dropdownContainerRef = useRef()
   const [isOpen, setOpen] = useState(false)
   const [shouldReverse, setReverse] = useState(false)
   const [selectedOption, setOption] = useState({})
+  useOutsideClick(dropdownContainerRef, () => setOpen(false))
 
   const handleClickDropdown = () => {
     setOpen(prevState => !prevState)
@@ -75,7 +78,7 @@ const Dropdown = (props) => {
   }
 
   return (
-    <div className={`dropdown ${className ? className : ''}`}>
+    <div ref={dropdownContainerRef} className={`dropdown ${className ? className : ''}`}>
       <div className='dropdown__button' onClick={handleClickDropdown}>
         <span className='dropdown__title text-dots'>
           {title} {titleWithName && selectedOption?.name}
