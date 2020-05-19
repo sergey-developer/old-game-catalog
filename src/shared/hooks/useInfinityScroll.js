@@ -1,12 +1,18 @@
 import {useState, useEffect} from 'react'
 
-const useInfiniteScroll = (callback) => {
+const useInfiniteScroll = (callback, limitBeforeScrollEnd) => {
   const [isScrollBottomReached, setScrollBottomReached] = useState(false)
+  let timeoutId
 
   useEffect(() => {
     const handleScroll = () => {
-      if (document.documentElement.scrollHeight - document.documentElement.scrollTop !== document.documentElement.clientHeight || isScrollBottomReached) return
-      setScrollBottomReached(true)
+      clearTimeout(timeoutId)
+      timeoutId = setTimeout(() => { // setTimeout for preventing scroll event triggering twice
+        const value = (document.documentElement.scrollHeight - document.documentElement.scrollTop) - document.documentElement.clientHeight
+        const isLimitReached = limitBeforeScrollEnd ? value <= limitBeforeScrollEnd : value === 0
+        if (!isLimitReached || isScrollBottomReached) return
+        setScrollBottomReached(true)
+      }, 300)
     }
 
     window.addEventListener('scroll', handleScroll)

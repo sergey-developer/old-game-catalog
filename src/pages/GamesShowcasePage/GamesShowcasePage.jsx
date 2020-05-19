@@ -27,7 +27,7 @@ const GamesShowcasePage = ({history}) => {
   const [gameList, setGamesList] = useState([])
   const {games, nextPage, allGamesIsLoading, allGamesError} = useAllGames(filter)
   const {allPlatforms, allPlatformsIsLoading} = useAllPlatforms()
-  const {setScrollBottomReached} = useInfinityScroll(debounce(handleInfinityScroll, 400))
+  const {setScrollBottomReached} = useInfinityScroll(handleInfinityScroll, 500)
 
   useEffect(() => {
     if (games) {
@@ -108,7 +108,7 @@ const GamesShowcasePage = ({history}) => {
   return (
     <div className='games-showcase-page'>
       <SearchBar
-        onSearch={debounce(handleSearch, 500)}
+        onSearch={debounce(handleSearch, 400)}
         isLoading={allGamesIsLoading}
       >
         <Dropdown
