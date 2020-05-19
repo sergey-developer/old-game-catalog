@@ -15,10 +15,9 @@ const GameList = ({games, isLoading}) => {
   }
 
   const renderList = () => {
-    if (isLoading) {
+    if (isLoading && games.length === 0) {
       return <Spinner/>
     }
-
     if (!isLoading && games.length === 0) {
       return <div>No result</div>
     }
@@ -38,6 +37,9 @@ const GameList = ({games, isLoading}) => {
   return (
     <div className='game-list'>
       {renderList()}
+      {isLoading && games.length > 0 &&
+        <Spinner size='medium'/>
+      }
     </div>
   )
 }

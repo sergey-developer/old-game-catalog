@@ -122,10 +122,7 @@ const GamesShowcasePage = ({history}) => {
           isLoading={allGamesIsLoading || allPlatformsIsLoading}
         />
       </SearchBar>
-      <GameList
-        games={gameList}
-        isLoading={allGamesIsLoading}
-      />
+      <GameList games={gameList} isLoading={allGamesIsLoading}/>
     </div>
   )
 }
