@@ -27,19 +27,23 @@ const Slider = (props) => {
 
   const setPrev = () => {
     const prevIndex = activeIndex - 1
-    const prevItem = slides[prevIndex]
-    if (prevItem) {
-      setActiveSlide(prevItem)
+    const prevSlide = slides[prevIndex]
+    if (prevSlide) {
+      setActiveSlide(prevSlide)
       setActiveIndex(prevIndex)
     }
   }
 
   const setNext = () => {
     const nextIndex = activeIndex + 1
-    const nextItem = slides[nextIndex]
-    if (nextItem) {
-      setActiveSlide(nextItem)
+    const nextSlide = slides[nextIndex]
+    if (nextSlide) {
+      setActiveSlide(nextSlide)
       setActiveIndex(nextIndex)
+    } else {
+      const firstSlide = slides[0]
+      setActiveSlide(firstSlide)
+      setActiveIndex(0)
     }
   }
 
