@@ -7,7 +7,7 @@ import SearchBar from '../../shared/components/SearchBar/SearchBar'
 import Dropdown from '../../shared/components/Dropdown/Dropdown'
 import {useAllGames} from '../../features/game/hooks'
 import {useAllPlatforms} from '../../features/platform/hooks'
-import useInfinityScroll from '../../shared/hooks/useInfinityScroll'
+import useInfiniteScroll from '../../shared/hooks/useInfiniteScroll'
 import {makeQueryString} from '../../shared/helpers/url'
 
 const sortOptions = [{id: 'released', name: 'Release date'}, {id: 'rating', name: 'Rate'}]
@@ -27,7 +27,7 @@ const GamesShowcasePage = ({history}) => {
   const [gameList, setGamesList] = useState([])
   const {games, nextPage, allGamesIsLoading, allGamesError} = useAllGames(filter)
   const {allPlatforms, allPlatformsIsLoading} = useAllPlatforms()
-  const {setScrollBottomReached} = useInfinityScroll(handleInfinityScroll, 500)
+  const {setScrollBottomReached} = useInfiniteScroll(handleInfinityScroll, 500)
 
   useEffect(() => {
     if (games) {
